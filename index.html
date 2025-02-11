@@ -1,0 +1,173 @@
+<html>
+<Head>
+ <style type="text/css">
+    /* Hide the Old Khaki Web field */
+    label[for="Old_Khaki_Web__c"],
+    select#Old_Khaki_Web__c.Old_Khaki_Web__c.slds-style-select.select,
+    select#Old_Khaki_Web__c.Old_Khaki_Web__c.slds-style-select.select::after {
+        display: none;
+    }
+    /* Custom styling for the embedded help button */
+    .embeddedServiceHelpButton .helpButton .uiButton {
+        background-color: #4A4A49;
+        font-family: "Salesforce Sans", sans-serif;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 1px solid #4A4A49;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:hover {
+        background-color: #DCD2C7;
+        color: #101111;
+    }
+    /* Custom styling for the dialog buttons */
+    .dialogButton .uiButton:hover {
+        background-color: #DCD2C7;
+        color: #101111;
+    }
+    .dialogButton .uiButton .label {
+        color: #007BFF !important;
+    }
+    .dialogButton .uiButton {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    /* Styling for chat messages */
+    .chasitor[c-chatMessage_chatMessage] {
+        color: #101111;
+        background: #E3E3E3;
+        margin-left: auto;
+        border-radius: 10px 10px 0;
+        float: right;
+    }
+    /* Default and hover styles for "Go Back" button */
+    .dialogButton.dialog-button-1.uiButton--inverse.uiButton.embeddedServiceSidebarButton {
+        background-color: #FFFFFF !important;
+    }
+    .dialogButton.dialog-button-1.uiButton--inverse.uiButton.embeddedServiceSidebarButton:hover,
+    .dialogButton.dialog-button-1.uiButton--inverse.uiButton.embeddedServiceSidebarButton:active {
+        color: #FFFFFF !important;
+        border: 2px solid #101111 !important;
+    }
+    .avatar.iconAvatar.agentInitial.agentIconColor0 {
+        color: #FFFFFF !important;
+    }
+    /* Include Salesforce Sans font */
+    @font-face {
+        font-family: 'Salesforce Sans';
+        src: url('https://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/SalesforceSans-Regular.woff') format('woff'),
+             url('https://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/SalesforceSans-Regular.ttf') format('truetype');
+    }
+</style>
+<script type="text/javascript" src="https://service.force.com/embeddedservice/5.0/esw.min.js"></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+		embedded_svc.settings.defaultMinimizedText = 'Chat to Betty';
+		embedded_svc.settings.disabledMinimizedText = 'Chat to Betty';
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+		// Settings for Chat
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+embedded_svc.settings.extraPrechatFormDetails = [
+                {
+                "label" : "Brand",
+                "value" : "Cape Union Mart",
+                "transcriptFields" : ["Brand__c"]
+                },
+               {
+                 "label" : "Customer Service Email",
+                 "value" : "customer-service@capeunionmart.co.za",
+                 "transcriptFields" : ["Customer_Service_Email__c"]
+                },
+{
+                    "label" : "WebSite",
+                    "value" : "www.capeunionmart.co.za",
+                    "transcriptFields" : ["WebSite_Link__c"]
+                },
+                {
+                 "label" : "Order Tracking URL",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/on/demandware.store/Sites-CUM-Site/en_ZA/Order-Tracker\">Track Order</a>",
+                 "transcriptFields" : ["Order_Tracking_URL__c"]
+                },
+                 {
+                 "label" : "Password Reset Link",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/account/passwordreset\">Password Reset</a>",
+                 "transcriptFields" : ["Password_Reset_Link__c"]
+                },
+               {
+                 "label" : "Gift Card Status Link",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/giftcardcheckbalance\">GiftCard Status</a>",
+                 "transcriptFields" : ["Gift_Card_Status_Link__c"]
+                },
+                {
+                 "label" : "Contact Us Link",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/page/contact\">ContactUs</a>",
+                 "transcriptFields" : ["Contact_Us_Link__c"]
+                },
+               {
+                 "label" : "Register Account",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/account\">Registering an account</a>",
+                 "transcriptFields" : ["Register_Account_Link__c"]
+                },
+                {
+                 "label" : "My Profile",
+                 "value" : "https://www.capeunionmart.co.za/account/profile/",
+                 "transcriptFields" : ["My_Profile_Link__c"]
+                },
+                {
+                 "label" : "Our Stores",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/stores\">ourstores</a>",
+                 "transcriptFields" : ["Our_Stores_Link__c"]
+                },
+                {
+                 "label" : "Rewards Dashboard",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/page/friends-and-family\">RewardsDashboard</a>",
+                 "transcriptFields" : ["Rewards_Dashboard_Link__c"]
+                },
+                {
+                 "label" : "Returns Policy",
+                 "value" : "<a style=\"color: blue; text-decoration: underline; cursor: pointer;\" href=\"https://www.capeunionmart.co.za/page/returns-exchanges\">Returns Policy</a>",
+                 "transcriptFields" : ["Returns_Policy_Process_Link__c"]
+                },
+                {
+                 "label" : "Customer Service Phone",
+                 "value" : "0860 333 329",
+                 "transcriptFields" : ["Customer_Service_Phone__c"]
+                },
+                {
+                 "label" : "Other Payment Options",
+                 "value" : "<a target=\"_blank\" style=\"color: black; text-decoration: underline; cursor: pointer;\" href=\"https://payflex.co.za/\">Payflex</a>\n- <a target=\"_blank\" style=\"color: black; text-decoration: underline; cursor: pointer;\" href=\"https://live.mobicred.co.za/web_mcrliv/run.w?run=application&merchantID=2059&returnUrl=https://www.capeunionmart.co.za/\">Mobicred</a>\n- <a target=\"_blank\" style=\"color: black; text-decoration: underline; cursor: pointer;\" href=\"https://www.float.co.za/\">Float</a>\n- <a target=\"_blank\" style=\"color: black; text-decoration: underline; cursor: pointer;\" href=\"https://payjustnow.com/\">PAYJUSTNOW</a>",
+                 "transcriptFields" : ["Other_Payment_Options__c"]
+                }
+               ];}
+</script>
+ </Head>
+    <body>
+        <script type='text/javascript'>
+            function initEmbeddedMessaging() {
+                try {
+                    embeddedservice_bootstrap.settings.language = 'en_US'; // Set language
+                    embeddedservice_bootstrap.init(
+                        '00Ddw0000007iNh',
+                        'Cape_union_mart_v2',
+                        'https://capeunionmart--dev.sandbox.my.site.com/ESWCapeunionmartv21737713368244',
+                        {
+                            scrt2URL: 'https://capeunionmart--dev.sandbox.my.salesforce-scrt.com'
+                        }
+                    );
+                } catch (err) {
+                    console.error('Error loading Embedded Messaging: ', err);
+                }
+            };
+        </script>
+        <script type='text/javascript' src='https://capeunionmart--dev.sandbox.my.site.com/ESWCapeunionmartv21737713368244/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    </body>
+</html>
